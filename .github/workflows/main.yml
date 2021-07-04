@@ -19,7 +19,6 @@ jobs:
   CI:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -40,4 +39,16 @@ jobs:
           tags: |
             pedrorougemont/rotten-potatoes:latest
             pedrorougemont/rotten-potatoes:${{ github.run_number }}
+  CD:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Kubernetes set context
+        uses: Azure/k8s-set-context@v1.1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+      
+        
 
