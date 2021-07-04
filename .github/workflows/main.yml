@@ -54,7 +54,7 @@ jobs:
       - name: Deploy MongoDB
         uses: Azure/k8s-deploy@v1
         with:
-          manifests:
+          manifests: |
             k8s/mongodb/mongo-deployment.yaml
             k8s/mongodb/mongo-service.yaml
       
